@@ -5,13 +5,14 @@ import os
 import shutil
 import sys
 from exception import UrlDoesNotExists
-from core import parts_size
+from operation import parts_size, grab_file_name
 
+soroush = "sss"
 class Shivan(object):
 	def __init__(self,url):
 		self.url = url
+		self._prepare()
 		self._download()
-
 	def _split(self):
 		"""
 		split full size of file to n part .
@@ -26,10 +27,14 @@ class Shivan(object):
 		"""
 		return parts_size(self.url)
 
+	def _prepare(self):
+		self._file_name = grab_file_name(self.url)
+
 	def _download(self):
 
 		path_to_temp = str(os.getcwd()) + "/.temp" # create path for temp dir
-		os.mkdir(path_to_temp) # create temp dir
+		if not os.path.exists(path_to_temp):
+			os.mkdir(path_to_temp) # create temp dir
 
 
 		splited_parts = self._split() # grab list of parts
@@ -43,7 +48,7 @@ class Shivan(object):
 				f.write(res.content) # create each part
 				part_files.append(f.name) # add path of part to list
 		
-		final = open(str(os.getcwd())+"/final.jpg","wb") # create final file
+		final = open(str(os.getcwd())+f"/{self._file_name}","wb") # create final file
 		
 		for i in part_files:
 			temp = open(i, 'rb')
