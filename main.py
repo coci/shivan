@@ -74,5 +74,9 @@ if __name__ == "__main__":
 		sys.exit(1)
 	action = Shivan(url)
 
+# TODO : fix final file name <solved>
 # TODO : add config file for defualt setting
 # TODO : dynamic file extension
+# TODO : add config file
+# TODO : dynamic path for download file
+# TODO : concurrent download each part 
