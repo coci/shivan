@@ -2,45 +2,59 @@ import requests
 import urllib
 import time
 import os
+import shutil
 import sys
 from exception import UrlDoesNotExists
 from core import parts_size
 
 class Shivan(object):
-    def __init__(self,url):
-        self.url = url
-        self._download()
+	def __init__(self,url):
+		self.url = url
+		self._download()
 
-    def _split(self):
-       return parts_size(self.url)
+	def _split(self):
+		"""
+		split full size of file to n part .
+		for examples full size of file is 174010 and we need to split file to 8 parts :
+			we split parts like :
+				[0, 29001, 58002, 87003, 116004, 145005, 174010]
+		then we request for each part to download file in 8 parts like his:
+			first part => 0 - 29001 byte
+			second part => 29002 - 58002 byte
+			....
+			least part => 145006 - 174010 byte
+		"""
+		return parts_size(self.url)
 
-    def _download(self):
-        parts = self._split()
-        path_to_download = str(os.getcwd()) + "/.temp"
-        for i in range(0,len(parts)-1):
-            start = parts[i] + 1 if i > 0 else parts[i]
-            end = parts[i+1]
-            res = requests.get(self.url,headers={"Range": f"bytes={start}-{end}"})
-            with open(path_to_download+f"/part{i}.jpg", 'wb') as f:
-                f.write(res.content)
+	def _download(self):
 
-        
-        files = []
-        final = open(str(os.getcwd())+"/final.jpg","wb")
-        for r, d, f in os.walk(path_to_download):
-            for file in f:
-                if 'jpg' in file:
-                    files.append(os.path.join(r, file))
-        files = sorted(files)
+		path_to_temp = str(os.getcwd()) + "/.temp" # create path for temp dir
+		os.mkdir(path_to_temp) # create temp dir
 
-        for i in files:
-            temp = open(i, 'rb')
-            temp = temp.read()
-            final.write(temp)
-        final.close()
-        for i in files:
-            if not 'final.jpg' in i:
-                os.remove(i)
+
+		splited_parts = self._split() # grab list of parts
+
+		part_files = [] # list of path of each part
+		for i in range(0,len(splited_parts)-1):
+			start = splited_parts[i] + 1 if i > 0 else splited_parts[i] # start of range(byte)
+			end = splited_parts[i+1] # end of range (byte)
+			res = requests.get(self.url,headers={"Range": f"bytes={start}-{end}"}) # grab file with start and end bound range
+			with open(path_to_temp+f"/part{i}.jpg", 'wb') as f:
+				f.write(res.content) # create each part
+				part_files.append(f.name) # add path of part to list
+		
+		final = open(str(os.getcwd())+"/final.jpg","wb") # create final file
+		
+		for i in part_files:
+			temp = open(i, 'rb')
+			temp = temp.read()
+			final.write(temp) # write each part in order on final file
+			os.remove(i) # delete part
+
+		final.close()
+
+		shutil.rmtree(path_to_temp) # delete temp folder
+
 if __name__ == "__main__":
     try:
         if len(sys.argv) > 1:
@@ -51,3 +65,7 @@ if __name__ == "__main__":
         print("please enter url ......")
         sys.exit(1)
     action = Shivan(url)
+
+# TODO : add config file for defualt setting
+# TODO : dynamic file extension
+# TODO : fix final file name
