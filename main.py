@@ -1,18 +1,20 @@
-import requests
 import urllib
 import time
 import os
 import shutil
 import sys
+
+import requests
 from exception import UrlDoesNotExists
 from operation import parts_size, grab_file_name
 
-soroush = "sss"
+
 class Shivan(object):
-	def __init__(self,url):
+	def __init__(self, url):
 		self.url = url
-		self._prepare()
+		self._prepare()  # preprocess before download
 		self._download()
+
 	def _split(self):
 		"""
 		split full size of file to n part .
@@ -28,49 +30,49 @@ class Shivan(object):
 		return parts_size(self.url)
 
 	def _prepare(self):
-		self._file_name = grab_file_name(self.url)
+		self._file_name = grab_file_name(self.url)  # grab file name from url
 
 	def _download(self):
+		path_to_temp = str(os.getcwd()) + "/.temp"  # temp dir path
 
-		path_to_temp = str(os.getcwd()) + "/.temp" # create path for temp dir
 		if not os.path.exists(path_to_temp):
-			os.mkdir(path_to_temp) # create temp dir
+			os.mkdir(path_to_temp)  # create temp dir
 
+		splited_parts = self._split()  # grab <list> of parts
 
-		splited_parts = self._split() # grab list of parts
+		part_files = []  # list of path of each part
 
-		part_files = [] # list of path of each part
-		for i in range(0,len(splited_parts)-1):
-			start = splited_parts[i] + 1 if i > 0 else splited_parts[i] # start of range(byte)
-			end = splited_parts[i+1] # end of range (byte)
-			res = requests.get(self.url,headers={"Range": f"bytes={start}-{end}"}) # grab file with start and end bound range
-			with open(path_to_temp+f"/part{i}.jpg", 'wb') as f:
-				f.write(res.content) # create each part
-				part_files.append(f.name) # add path of part to list
-		
-		final = open(str(os.getcwd())+f"/{self._file_name}","wb") # create final file
-		
+		for i in range(0, len(splited_parts) - 1):
+			start = splited_parts[i] + 1 if i > 0 else splited_parts[i]  # start of range(byte)
+			end = splited_parts[i + 1]  # end of range (byte)
+			res = requests.get(self.url,
+							   headers={"Range": f"bytes={start}-{end}"})  # grab file with start and end bound range
+			with open(path_to_temp + f"/part{i}.jpg", 'wb') as f:
+				f.write(res.content)  # create each part
+				part_files.append(f.name)  # add path of part to list
+
+		final = open(str(os.getcwd()) + f"/{self._file_name}", "wb")  # create final file
+
 		for i in part_files:
-			temp = open(i, 'rb')
-			temp = temp.read()
-			final.write(temp) # write each part in order on final file
-			os.remove(i) # delete part
+			temp_file = open(i, 'rb')
+			temp_file = temp_file.read()
+			final.write(temp_file)  # write each part in order on final file
+			os.remove(i)  # delete part
 
 		final.close()
+		shutil.rmtree(path_to_temp)  # delete temp folder
 
-		shutil.rmtree(path_to_temp) # delete temp folder
 
 if __name__ == "__main__":
-    try:
-        if len(sys.argv) > 1:
-            url = sys.argv[1]
-        else:
-            raise UrlDoesNotExists
-    except UrlDoesNotExists:
-        print("please enter url ......")
-        sys.exit(1)
-    action = Shivan(url)
+	try:
+		if len(sys.argv) > 1:
+			url = sys.argv[1]
+		else:
+			raise UrlDoesNotExists
+	except UrlDoesNotExists:
+		print("please enter url ......")
+		sys.exit(1)
+	action = Shivan(url)
 
 # TODO : add config file for defualt setting
 # TODO : dynamic file extension
-# TODO : fix final file name
