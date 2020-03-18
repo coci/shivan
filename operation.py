@@ -32,8 +32,8 @@ def grab_file_name(url) -> str:
 		- name : file_name
 			- description : file name + file extension
 	"""
-	file_name = re.findall(r'(?=\w+\.\w{3,4}$).+', url)
-	return file_name[0]
+	file_name = list(url.split('/')) 
+	return file_name[-1]
 
 
 def download_threading(start, end, url, i, path_to_temp) -> None:
