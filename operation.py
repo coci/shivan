@@ -1,6 +1,8 @@
 import requests
 import re
 
+part_files = [] # fill with list of files from download_threading()
+
 def parts_size(url) -> list :
     """
     split file into 8 part from header
@@ -17,6 +19,17 @@ def parts_size(url) -> list :
     split_size[8] = full_size # fix least size to remainder byte from split
     return split_size
 
-def grab_file_name(url):
+def grab_file_name(url) -> str :
     file_name = re.findall(r'(?=\w+\.\w{3,4}$).+',url)
     return file_name[0]
+
+
+def download_threading(start,end,url,i,path_to_temp) -> None :
+    res = requests.get(url,
+							   headers={"Range": f"bytes={start}-{end}"})  # grab file with start and end bound range
+    with open(path_to_temp + f"/part{i}.jpg", 'wb') as f:
+        f.write(res.content)  # create each part
+        part_files.append(f.name)  # add path of part to list
+
+def write_on_final_file():
+    pass

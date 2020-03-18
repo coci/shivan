@@ -3,10 +3,11 @@ import time
 import os
 import shutil
 import sys
-
+from threading import Thread
 import requests
+
 from exception import UrlDoesNotExists
-from operation import parts_size, grab_file_name
+from operation import parts_size, grab_file_name, download_threading, part_files
 
 
 class Shivan(object):
@@ -38,27 +39,24 @@ class Shivan(object):
 		if not os.path.exists(path_to_temp):
 			os.mkdir(path_to_temp)  # create temp dir
 
-		splited_parts = self._split()  # grab <list> of parts
-
-		part_files = []  # list of path of each part
-
+		splited_parts = self._split()  # grab <list> of parts size
 		for i in range(0, len(splited_parts) - 1):
 			start = splited_parts[i] + 1 if i > 0 else splited_parts[i]  # start of range(byte)
 			end = splited_parts[i + 1]  # end of range (byte)
-			res = requests.get(self.url,
-							   headers={"Range": f"bytes={start}-{end}"})  # grab file with start and end bound range
-			with open(path_to_temp + f"/part{i}.jpg", 'wb') as f:
-				f.write(res.content)  # create each part
-				part_files.append(f.name)  # add path of part to list
+			
+			# download each part in seprate thread
+			download_in_thread = Thread(target=download_threading(start,end,self.url,i,path_to_temp))
+			download_in_thread.start()
 
+		
 		final = open(str(os.getcwd()) + f"/{self._file_name}", "wb")  # create final file
 
+		# part_files is list of each part path that fill in operation module
 		for i in part_files:
-			temp_file = open(i, 'rb')
+			temp_file = open(i, 'rb') # open as read byte mode (rb)
 			temp_file = temp_file.read()
 			final.write(temp_file)  # write each part in order on final file
 			os.remove(i)  # delete part
-
 		final.close()
 		shutil.rmtree(path_to_temp)  # delete temp folder
 
@@ -75,8 +73,10 @@ if __name__ == "__main__":
 	action = Shivan(url)
 
 # TODO : fix final file name <solved>
+# TODO : multi-thread download <solved>
+
 # TODO : add config file for defualt setting
 # TODO : dynamic file extension
 # TODO : add config file
 # TODO : dynamic path for download file
-# TODO : concurrent download each part 
+ 
