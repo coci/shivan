@@ -52,9 +52,9 @@ class Shivan(object):
 			temp_file = open(i, 'rb')  # open as read byte mode (rb)
 			temp_file = temp_file.read()
 			final.write(temp_file)  # write each part in order on final file
-			os.remove(i)  # delete part
+			# os.remove(i)  # delete part
 		final.close()
-		shutil.rmtree(path_to_temp)  # delete temp folder
+		# shutil.rmtree(path_to_temp)  # delete temp folder
 
 
 if __name__ == "__main__":

@@ -1,6 +1,8 @@
 import re
-
+import sys
+import time
 import requests
+from progress.bar import Bar
 
 part_files = []  # fill with list of files from download_threading()
 
@@ -56,13 +58,17 @@ def download_threading(start, end, url, i, path_to_temp) -> None:
 		-name : path_to_temp
 			-description : temp dir path ( to save each part )
 
-	"""
+	"""	
 	res = requests.get(url,
-					   headers={"Range": f"bytes={start}-{end}"})  # grab file with start and end bound range
+					   headers={"Range": f"bytes={start}-{end}"},stream=True)  # grab file with start and end bound range
+
+	bar = Bar(f'Part {i} :', max=(end-start)//1024 + 1)
 	with open(path_to_temp + f"/part{i}.jpg", 'wb') as f:
-		f.write(res.content)  # create each part
-		part_files.append(f.name)  # add path of part to list
-	print(f"part {i + 1} finished ....")
+		for chunk in res.iter_content(1024):
+			bar.next()
+			f.write(chunk)  # create each part)
+	part_files.append(f.name)  # add path of part to list
+	bar.finish()
 
 
 def write_on_final_file():
