@@ -23,6 +23,15 @@ def parts_size(url) -> list:
 
 
 def grab_file_name(url) -> str:
+	"""
+	grab file name from link
+	param:
+		- name : url
+			- description : downlaod link
+	responses:
+		- name : file_name
+			- description : file name + file extension
+	"""
 	file_name = re.findall(r'(?=\w+\.\w{3,4}$).+', url)
 	return file_name[0]
 
@@ -46,6 +55,7 @@ def download_threading(start, end, url, i, path_to_temp) -> None:
 
 		-name : path_to_temp
 			-description : temp dir path ( to save each part )
+
 	"""
 	res = requests.get(url,
 					   headers={"Range": f"bytes={start}-{end}"})  # grab file with start and end bound range

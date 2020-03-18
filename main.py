@@ -4,10 +4,7 @@ import sys
 from threading import Thread
 
 from exception import UrlDoesNotExists
-from operation import (
-	parts_size, grab_file_name,
-	download_threading, part_files,
-)
+from operation import parts_size, grab_file_name, download_threading, part_files
 
 
 class Shivan(object):
