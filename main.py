@@ -7,8 +7,10 @@ from threading import Thread
 import requests
 
 from exception import UrlDoesNotExists
-from operation import parts_size, grab_file_name, download_threading, part_files
-
+from operation import (
+	parts_size, grab_file_name, 
+	download_threading, part_files,
+)
 
 class Shivan(object):
 	def __init__(self, url):
@@ -43,7 +45,7 @@ class Shivan(object):
 		for i in range(0, len(splited_parts) - 1):
 			start = splited_parts[i] + 1 if i > 0 else splited_parts[i]  # start of range(byte)
 			end = splited_parts[i + 1]  # end of range (byte)
-			
+
 			# download each part in seprate thread
 			download_in_thread = Thread(target=download_threading(start,end,self.url,i,path_to_temp))
 			download_in_thread.start()
@@ -74,9 +76,10 @@ if __name__ == "__main__":
 
 # TODO : fix final file name <solved>
 # TODO : multi-thread download <solved>
+# TODO : dynamic file extension
+
 
 # TODO : add config file for defualt setting
-# TODO : dynamic file extension
 # TODO : add config file
 # TODO : dynamic path for download file
  

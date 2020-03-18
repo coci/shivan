@@ -25,11 +25,32 @@ def grab_file_name(url) -> str :
 
 
 def download_threading(start,end,url,i,path_to_temp) -> None :
+    """
+    multi-thread downloading
+
+    param:
+        -name : start
+            -description : from (byte)
+
+        -name : end
+            -description : to (byte)
+
+        -name : url
+            -description : file link
+
+        -name : i
+            -description : iter counter
+
+        -name : path_to_temp
+            -description : temp dir path ( to save each part )
+    """
     res = requests.get(url,
 							   headers={"Range": f"bytes={start}-{end}"})  # grab file with start and end bound range
     with open(path_to_temp + f"/part{i}.jpg", 'wb') as f:
         f.write(res.content)  # create each part
         part_files.append(f.name)  # add path of part to list
+    print(f"part {i+1} finished ....")
+
 
 def write_on_final_file():
     pass
