@@ -1,9 +1,30 @@
-## shivan
+# shivan
 python download manager
   
 <p>&nbsp;</p>
 
+## usage :
+
+### config:
+
+to config , enter :
+```
+$   python3 main.py --config
+```
+then to set path as default to save file after download finish :
+
+note : if hit enter and leave it blank , it set default path
+```
+    /User/exmaple/desktop
+```
+then to specify split number :
+note : if hit enter and leave it blank , it set 8 part as a default 
+```
+    8
+```
+
 ### usage :
+
 1- install requirements :
 
 ```
