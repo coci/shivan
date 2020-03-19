@@ -20,8 +20,6 @@ $   python3 main.py <url>
 
 enjoy !
 
-<p>&nbsp;</p>
-
 ### contribute :
 i appricate any PR .
 <p>&nbsp;</p>
