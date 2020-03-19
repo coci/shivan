@@ -11,15 +11,15 @@ to config , enter :
 ```
 $   python3 main.py --config
 ```
-then to set path as default to save file after download finish :
+first set where to save downloaded file :
 
-note : if hit enter and leave it blank , it set default path
+(note : if hit enter and leave it blank , it set default path)
 ```
 /User/exmaple/desktop
 ```
 then to specify split number ( not work yet !):
 
-note : if hit enter and leave it blank , it set 8 part as a default 
+(note : if hit enter and leave it blank , it set 8 part as a default)
 ```
 8
 ```
