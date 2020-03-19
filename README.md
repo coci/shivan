@@ -3,12 +3,16 @@ python download manager
 
 
 
+
+
+
 #### TODO:
 **Done**
 
 ~~TODO : fix final file name <solved>~~
 
 ~~TODO : multi-thread download <solved>~~
+
 
 
 **Short-term**
@@ -28,6 +32,7 @@ TODO : dynamic path for download file
 TODO : url checker
 
 TODO : read from clipboard
+
 
 
 
