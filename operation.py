@@ -21,7 +21,7 @@ def parts_size(url) -> list:
 	full_size = int(resquest.headers['content-Length'])  # full size
 	split_size = [x for x in range(0, full_size, full_size // 8)]  # create
 	split_size[8] = full_size  # fix least size to remainder byte from split
-	return split_size
+	return (split_size,full_size)
 
 
 def grab_file_name(url) -> str:
@@ -68,8 +68,8 @@ def download_threading(start, end, url, i,file_name,part_files, path_to_temp) ->
 	res = requests.get(url,
 					   headers={"Range": f"bytes={start}-{end}"},stream=True)  # grab file with start and end bound range
 
-	bar = Bar(f'Part {i} :', max=(end-start)//1024 + 1)
-	with open(path_to_temp + f"/part{i}-{file_name}", 'wb') as f:
+	bar = Bar(f'Part {i+1} :', max=(end-start)//1024 + 1)
+	with open(path_to_temp + f"/part{i+1}-{file_name}", 'wb') as f:
 		for chunk in res.iter_content(1024):
 			bar.next()
 			f.write(chunk)  # create each part)

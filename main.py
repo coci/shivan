@@ -4,13 +4,14 @@ import sys
 from threading import Thread
 
 from exception import UrlDoesNotExists
-from operation import parts_size, grab_file_name, download_threading, part_files
+from operation import parts_size, grab_file_name, download_threading
 
 
 class Shivan(object):
 	def __init__(self, url):
 		self.url = url
 		self._prepare()  # preprocess before download
+		self._information()
 		self._download()
 
 	def _split(self):
@@ -30,6 +31,14 @@ class Shivan(object):
 	def _prepare(self):
 		self._file_name = grab_file_name(self.url)  # grab file name from url
 
+	def _information(self):
+		print("")
+		print(f"file name : {self._file_name}")
+		print(f"file size : {self._split()[1]//1024} KB")
+		print('number of parts : 8') # TODO: dynamic number of part
+		print(f"download in : {str(os.getcwd())}")
+		print("")
+
 	def _download(self):
 		path_to_temp = str(os.getcwd()) + "/.temp"  # temp dir path
 
@@ -39,7 +48,7 @@ class Shivan(object):
 		part_files = dict() # store all part files (path + name)
 		part_files[self._file_name] = [] # seprate downloaded files
 
-		splited_parts = self._split()  # grab <list> of parts size
+		splited_parts = self._split()[0]  # grab <list> of parts size
 		for i in range(0, len(splited_parts) - 1):
 			start = splited_parts[i] + 1 if i > 0 else splited_parts[i]  # start of range(byte)
 			end = splited_parts[i + 1]  # end of range (byte)
@@ -58,7 +67,8 @@ class Shivan(object):
 			os.remove(i)  # delete part
 		final.close()
 		shutil.rmtree(path_to_temp)  # delete temp folder
-
+		print("")
+		print("Download finished.....")
 if __name__ == "__main__":
 	try:
 		if len(sys.argv) > 1:
