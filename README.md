@@ -6,13 +6,13 @@ python download manager
 1- install requirements :
 
 ```
-    pip install -r requirements.txt
+$   pip install -r requirements.txt
 ```
 
 2- download file :
 
 ```
-    python3 main.py <url>
+$   python3 main.py <url>
 ```
 
 3- it downloaded in the root of project , yet
@@ -20,10 +20,9 @@ python download manager
 enjoy !
 
 <p>&nbsp;</p>
+
 ### contribute
 i appricate any PR .
-
-<p>&nbsp;</p>
 <p>&nbsp;</p>
 
 ## TODO:
@@ -32,7 +31,7 @@ i appricate any PR .
 ~~TODO : fix final file name <solved>~~
 
 ~~TODO : multi-thread download <solved>~~
-
+<p>&nbsp;</p>
 
   
 **Short-term**
@@ -52,8 +51,6 @@ TODO : dynamic path for download file
 TODO : url checker
 
 TODO : read from clipboard
-
-
 
 <p>&nbsp;</p>
 **Long-term**
