@@ -60,7 +60,7 @@ i appricate any PR .
 
 ~~- add config file for defualt setting~~
 
-~~- add config file for defualt setting~~
+~~- dynamic path~~
 
 ~~- url format validation~~
 
