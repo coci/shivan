@@ -1,7 +1,7 @@
 ## shivan
 python download manager
-
-$~$
+  
+  
 ### usage :
 1- install requirements :
 
@@ -19,12 +19,11 @@ $~$
 
 enjoy !
 
-
+  
 ### contribute
 i appricate any PR .
 
-$~$
-
+  
 ## TODO:
 **Done**
 
@@ -33,7 +32,7 @@ $~$
 ~~TODO : multi-thread download <solved>~~
 
 
-$~$
+  
 **Short-term**
 
 TODO : dynamic file extension
