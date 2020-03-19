@@ -2,10 +2,11 @@ import os
 import shutil
 import sys
 from threading import Thread
+import json
 
-from exception import UrlDoesNotExists
-from operation import parts_size, grab_file_name, download_threading
-
+from exception import UrlDoesNotExists, InCorrectUrl
+from operation import parts_size, grab_file_name, download_threading, set_config
+from validation import check_url
 
 class Shivan(object):
 	def __init__(self, url):
@@ -30,6 +31,17 @@ class Shivan(object):
 
 	def _prepare(self):
 		self._file_name = grab_file_name(self.url)  # grab file name from url
+
+		# load config file
+		config_file_path = str(os.getcwd()) + "/config.cfg"
+		if os.path.exists(config_file_path):
+			self._config_file = json.load(open(config_file_path,'r'))
+		else:
+			self._config_file = {
+				"part" : "",
+				"path_to_download" : ""
+			}
+
 
 	def _information(self):
 		print("")
@@ -57,7 +69,11 @@ class Shivan(object):
 			download_in_thread = Thread(target=download_threading(start, end, self.url, i,self._file_name,part_files[self._file_name], path_to_temp))
 			download_in_thread.start()
 
-		final = open(str(os.getcwd()) + f"/{self._file_name}", "wb")  # create final file
+
+		if self._config_file['path_to_download'] :
+			final = open(self._config_file['path_to_download'] + f"/{self._file_name}", "wb")
+		else:
+			final = open(str(os.getcwd()) + f"/{self._file_name}", "wb")
 
 		# part_files is list of each part path , that fill in operation module
 		for i in part_files[self._file_name]:
@@ -72,10 +88,23 @@ class Shivan(object):
 if __name__ == "__main__":
 	try:
 		if len(sys.argv) > 1:
-			url = sys.argv[1]
+			if sys.argv[1] == "--config" :
+				set_config()
+			elif check_url(sys.argv[1]):
+				action = Shivan(sys.argv[1])
+			else:
+				print("")
+				print("please enter url in correct format : ")
+				print("")
+				print(" [http or https]://[domain].[domain suffix]/[file name].[extension]")
+				sys.exit(1)
 		else:
 			raise UrlDoesNotExists
+
 	except UrlDoesNotExists:
-		print("please enter url ......")
+		print("to download file:")
+		print("	python3 main.py http://www.example.com/example.zip")
+		print("")
+		print("to config :")
+		print("	python3 main.py --config")
 		sys.exit(1)
-	action = Shivan(url)

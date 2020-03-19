@@ -2,6 +2,8 @@ import re
 import sys
 import time
 import requests
+import os
+import json
 from progress.bar import Bar
 
   # fill with list of files from download_threading()
@@ -76,6 +78,33 @@ def download_threading(start, end, url, i,file_name,part_files, path_to_temp) ->
 	part_files.append(f.name)  # add path of part to list
 	bar.finish()
 
+def set_config():
+	config_file_path = str(os.getcwd()) + "/config.cfg"
 
-def write_on_final_file():
-	pass
+	if os.path.exists(config_file_path):
+		config_file = json.load(open(config_file_path,'r'))
+	else:
+		config_file = {}
+	
+	print("where do you need store downloaded file as default ?")
+	print("provide path like : /User/example/desktop")
+	print("** note ** : if you hit enter and leave it blank , its store file in root of project.")
+	path_to_download = input("")
+
+	config_file["path_to_download"]= path_to_download
+
+	print("how many do you need shivan splits download ?")
+	print("provide number in range(1-8) : ")
+	print("** note ** : if you hit enter and leave it blank , its set 8 part as a default.")
+	parts = input("")
+
+	if parts:
+		if int(parts) > 8 :
+			parts = 8
+	config_file["part"]= parts
+
+	json.dump(config_file,open(config_file_path,'w+'))
+
+
+
+
