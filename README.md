@@ -15,15 +15,16 @@ then to set path as default to save file after download finish :
 
 note : if hit enter and leave it blank , it set default path
 ```
-    /User/exmaple/desktop
+/User/exmaple/desktop
 ```
 then to specify split number :
+
 note : if hit enter and leave it blank , it set 8 part as a default 
 ```
-    8
+8
 ```
 
-### usage :
+### download :
 
 1- install requirements :
 
@@ -37,9 +38,8 @@ $   pip install -r requirements.txt
 $   python3 main.py <url>
 ```
 
-3- it downloaded in the root of project , yet
+3- enjoy !
 
-enjoy !
 
 ### contribute :
 i appricate any PR .
