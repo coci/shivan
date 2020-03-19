@@ -17,7 +17,7 @@ note : if hit enter and leave it blank , it set default path
 ```
 /User/exmaple/desktop
 ```
-then to specify split number :
+then to specify split number ( not work yet !):
 
 note : if hit enter and leave it blank , it set 8 part as a default 
 ```
@@ -46,38 +46,39 @@ i appricate any PR .
 <p>&nbsp;</p>
 
 ## TODO:
-**Done**
+**Done :**
 
-~~TODO : fix final file name~~
+~~- fix final file name~~
 
-~~TODO : multi-thread download~~
+~~- multi-thread download~~
 
-~~TODO : dynamic file extension~~
+~~- dynamic file extension~~
 
-~~TODO : parts name be same as a file name~~
+~~- parts name be same as a file name~~
 
-~~TODO : first show information about file~~
+~~- first show information about file~~
 
-~~TODO : add config file for defualt setting~~
+~~- add config file for defualt setting~~
 
-~~TODO : add config file for defualt setting~~
+~~- add config file for defualt setting~~
+
+~~- url checker~~
 
 <p>&nbsp;</p>
 
   
-**Short-term**
+**Short-term :**
 
-TODO : dynamic number of part
+- dynamic number of part
 
-TODO : check if all parts downloaded then concate to final_file
+- check if all parts downloaded then concate to final_file
 
-TODO : url checker
-
-TODO : read from clipboard
+- read from clipboard
 
 <p>&nbsp;</p>
-**Long-term**
 
-TODO : MacOS app
+**Long-term :**
 
-TODO : linux app
+- MacOS app
+
+- linux app
