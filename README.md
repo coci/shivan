@@ -1,7 +1,7 @@
 ## shivan
 python download manager
   
-  
+<p>&nbsp;</p>
 ### usage :
 1- install requirements :
 
@@ -19,11 +19,13 @@ python download manager
 
 enjoy !
 
-  
+<p>&nbsp;</p>
 ### contribute
 i appricate any PR .
 
-  
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
 ## TODO:
 **Done**
 
@@ -53,7 +55,7 @@ TODO : read from clipboard
 
 
 
-
+<p>&nbsp;</p>
 **Long-term**
 
 TODO : MacOS app
