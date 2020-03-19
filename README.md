@@ -62,12 +62,14 @@ i appricate any PR .
 
 ~~- add config file for defualt setting~~
 
-~~- url checker~~
+~~- url format validation~~
 
 <p>&nbsp;</p>
 
   
 **Short-term :**
+
+- check url is downloadable
 
 - dynamic number of part
 
