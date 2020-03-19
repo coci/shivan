@@ -36,6 +36,11 @@ i appricate any PR .
 ~~TODO : parts name be same as a file name~~
 
 ~~TODO : first show information about file~~
+
+~~TODO : add config file for defualt setting~~
+
+~~TODO : add config file for defualt setting~~
+
 <p>&nbsp;</p>
 
   
@@ -44,10 +49,6 @@ i appricate any PR .
 TODO : dynamic number of part
 
 TODO : check if all parts downloaded then concate to final_file
-
-TODO : add config file for defualt setting
-
-TODO : dynamic path for download file
 
 TODO : url checker
 
