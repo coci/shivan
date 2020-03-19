@@ -78,7 +78,18 @@ def download_threading(start, end, url, i,file_name,part_files, path_to_temp) ->
 	part_files.append(f.name)  # add path of part to list
 	bar.finish()
 
-def set_config():
+def set_config() -> None:
+	"""
+	configuration system
+	* 
+	| example :
+	| run :
+	| python3 main.py --config
+	| it's fire up script that ask user to provide :
+	| 		path_to_download : where user need store file after downloaded
+	|		part : number of part that shivan can split downloadable file ( in range 1 - 8)
+	*
+	"""
 	config_file_path = str(os.getcwd()) + "/config.cfg"
 
 	if os.path.exists(config_file_path):

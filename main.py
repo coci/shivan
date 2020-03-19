@@ -12,7 +12,7 @@ class Shivan(object):
 	def __init__(self, url):
 		self.url = url
 		self._prepare()  # preprocess before download
-		self._information()
+		self._information()  # print out information about file
 		self._download()
 
 	def _split(self):
@@ -71,8 +71,10 @@ class Shivan(object):
 
 
 		if self._config_file['path_to_download'] :
+			# store file in path that user provided
 			final = open(self._config_file['path_to_download'] + f"/{self._file_name}", "wb")
 		else:
+			# if user doesn't config , store file in root of project
 			final = open(str(os.getcwd()) + f"/{self._file_name}", "wb")
 
 		# part_files is list of each part path , that fill in operation module
@@ -89,7 +91,7 @@ if __name__ == "__main__":
 	try:
 		if len(sys.argv) > 1:
 			if sys.argv[1] == "--config" :
-				set_config()
+				set_config()  # load configuration system 
 			elif check_url(sys.argv[1]):
 				action = Shivan(sys.argv[1])
 			else:
