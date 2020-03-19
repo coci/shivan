@@ -27,19 +27,21 @@ i appricate any PR .
 ## TODO:
 **Done**
 
-~~TODO : fix final file name <solved>~~
+~~TODO : fix final file name~~
 
-~~TODO : multi-thread download <solved>~~
+~~TODO : multi-thread download~~
+
+~~TODO : dynamic file extension~~
+
+~~TODO : parts name be same as a file name~~
+
+~~TODO : first show information about file~~
 <p>&nbsp;</p>
 
   
 **Short-term**
 
-TODO : dynamic file extension
-
-TODO : first show information about file
-
-TODO : parts name be same as a file name
+TODO : dynamic number of part
 
 TODO : check if all parts downloaded then concate to final_file
 
