@@ -1,10 +1,26 @@
-### shivan
+## shivan
 python download manager
 
+### usage :
+1- install requirements :
+
+```
+    pip install -r requirements.txt
+```
+
+2- download file :
+
+```
+    python3 main.py <url>
+```
+
+3- it downloaded in the root of project , yet
+
+enjoy !
 
 
-
-
+### contribute
+i appricate any PR .
 
 #### TODO:
 **Done**
