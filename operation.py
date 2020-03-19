@@ -4,7 +4,7 @@ import time
 import requests
 from progress.bar import Bar
 
-part_files = []  # fill with list of files from download_threading()
+  # fill with list of files from download_threading()
 
 
 def parts_size(url) -> list:
@@ -38,7 +38,7 @@ def grab_file_name(url) -> str:
 	return file_name[-1]
 
 
-def download_threading(start, end, url, i, path_to_temp) -> None:
+def download_threading(start, end, url, i,file_name,part_files, path_to_temp) -> None:
 	"""
 	multi-thread downloading
 
@@ -55,6 +55,12 @@ def download_threading(start, end, url, i, path_to_temp) -> None:
 		-name : i
 			-description : iter counter
 
+		-name : file_name
+			-description : original file name without file extension
+
+		-name : part_files
+			-description : array of file path
+
 		-name : path_to_temp
 			-description : temp dir path ( to save each part )
 
@@ -63,7 +69,7 @@ def download_threading(start, end, url, i, path_to_temp) -> None:
 					   headers={"Range": f"bytes={start}-{end}"},stream=True)  # grab file with start and end bound range
 
 	bar = Bar(f'Part {i} :', max=(end-start)//1024 + 1)
-	with open(path_to_temp + f"/part{i}.jpg", 'wb') as f:
+	with open(path_to_temp + f"/part{i}-{file_name}", 'wb') as f:
 		for chunk in res.iter_content(1024):
 			bar.next()
 			f.write(chunk)  # create each part)

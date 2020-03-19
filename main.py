@@ -36,26 +36,28 @@ class Shivan(object):
 		if not os.path.exists(path_to_temp):
 			os.mkdir(path_to_temp)  # create temp dir
 
+		part_files = dict() # store all part files (path + name)
+		part_files[self._file_name] = [] # seprate downloaded files
+
 		splited_parts = self._split()  # grab <list> of parts size
 		for i in range(0, len(splited_parts) - 1):
 			start = splited_parts[i] + 1 if i > 0 else splited_parts[i]  # start of range(byte)
 			end = splited_parts[i + 1]  # end of range (byte)
 
 			# download each part in seprate thread
-			download_in_thread = Thread(target=download_threading(start, end, self.url, i, path_to_temp))
+			download_in_thread = Thread(target=download_threading(start, end, self.url, i,self._file_name,part_files[self._file_name], path_to_temp))
 			download_in_thread.start()
 
 		final = open(str(os.getcwd()) + f"/{self._file_name}", "wb")  # create final file
 
-		# part_files is list of each part path that fill in operation module
-		for i in part_files:
+		# part_files is list of each part path , that fill in operation module
+		for i in part_files[self._file_name]:
 			temp_file = open(i, 'rb')  # open as read byte mode (rb)
 			temp_file = temp_file.read()
 			final.write(temp_file)  # write each part in order on final file
-			# os.remove(i)  # delete part
+			os.remove(i)  # delete part
 		final.close()
-		# shutil.rmtree(path_to_temp)  # delete temp folder
-
+		shutil.rmtree(path_to_temp)  # delete temp folder
 
 if __name__ == "__main__":
 	try:
