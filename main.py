@@ -67,12 +67,3 @@ if __name__ == "__main__":
 		print("please enter url ......")
 		sys.exit(1)
 	action = Shivan(url)
-
-# TODO : fix final file name <solved>
-# TODO : multi-thread download <solved>
-# TODO : dynamic file extension
-
-
-# TODO : add config file for defualt setting
-# TODO : add config file
-# TODO : dynamic path for download file
