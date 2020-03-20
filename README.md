@@ -1,11 +1,15 @@
 # shivan
-Shivan is a lightweight download manager written in python 🐍 . Shivan supports multi-part downloading method .
+Shivan is a lightweight download manager that written in python 🐍 . 
+
+Shivan supports multi-part downloading method .
   
 <p>&nbsp;</p>
 
 ## usage :
 
-### how to config:
+note : if you want to config Shivan please read otherwise please jump to step 2 .
+
+### 1 - how to config:
 
 you can configure Shivan in two terms :
 
@@ -24,7 +28,7 @@ $   python3 main.py --config
     2- if step 2 leaved blank : split file in 8 parts
 
 
-### how it works :
+### 2- how it works :
 
 1- install requirements :
 
@@ -43,12 +47,11 @@ $   python3 main.py <url>
 
 ### contribute :
 i appricate any PR or feedbacks to improve Shivan .
-<p>&nbsp;</p>
 
 ### note :
-you may have a question (why i create this ?) .
+you may have a question (why i create this ?)
 
-answer : i'm very curious about how donwload managers work because of that i wrote Shivan .
+answer : i'm very curious about how donwload managers work because of that i wrote Shivan :)
 <p>&nbsp;</p>
 
 ## TODO:
