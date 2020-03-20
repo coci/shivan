@@ -2,8 +2,7 @@
 Shivan is a lightweight download manager that written in python 🐍 . 
 
 Shivan supports multi-part downloading method .
-  
-<p>&nbsp;</p>
+
 
 ## usage :
 
@@ -13,7 +12,7 @@ note : if you want to config Shivan please read otherwise please jump to step 2 
 
 you can configure Shivan in two terms :
 
-    1 - where to save file after download file
+    1 - where to save file after Shivan downloads the file
 
     2 - how much Shivan must split file ( in range 1-8 parts)
 
