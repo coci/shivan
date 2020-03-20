@@ -4,6 +4,7 @@ import time
 import requests
 import os
 import json
+import time
 from progress.bar import Bar
 
   # fill with list of files from download_threading()
@@ -69,7 +70,6 @@ def download_threading(start, end, url, i,file_name,part_files, path_to_temp) ->
 	"""	
 	res = requests.get(url,
 					   headers={"Range": f"bytes={start}-{end}"},stream=True)  # grab file with start and end bound range
-
 	bar = Bar(f'Part {i+1} :', max=(end-start)//1024 + 1)
 	with open(path_to_temp + f"/part{i+1}-{file_name}", 'wb') as f:
 		for chunk in res.iter_content(1024):

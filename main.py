@@ -11,9 +11,13 @@ from validation import check_url
 class Shivan(object):
 	def __init__(self, url):
 		self.url = url
+		self._validate_url()
 		self._prepare()  # preprocess before download
 		self._information()  # print out information about file
 		self._download()
+
+	def _validate_url(self):
+		check_url(self.url)
 
 	def _split(self):
 		"""
@@ -92,14 +96,8 @@ if __name__ == "__main__":
 		if len(sys.argv) > 1:
 			if sys.argv[1] == "--config" :
 				set_config()  # load configuration system 
-			elif check_url(sys.argv[1]):
-				action = Shivan(sys.argv[1])
 			else:
-				print("")
-				print("please enter url in correct format : ")
-				print("")
-				print(" [http or https]://[domain].[domain suffix]/[file name].[extension]")
-				sys.exit(1)
+				action = Shivan(sys.argv[1])
 		else:
 			raise UrlDoesNotExists
 
