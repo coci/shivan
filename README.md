@@ -1,30 +1,30 @@
 # shivan
-python download manager
+Shivan is a lightweight download manager written in python 🐍 . Shivan supports multi-part downloading method .
   
 <p>&nbsp;</p>
 
 ## usage :
 
-### config:
+### how to config:
 
-to config , enter :
+you can configure Shivan in two terms :
+
+    1 - where to save file after download file
+
+    2 - how much Shivan must split file ( in range 1-8 parts)
+
+to configure please enter :
 ```
 $   python3 main.py --config
 ```
-first set where to save downloaded file :
+* note : configuration steps will ask 2 questions and if you hit enter and leave it blank in any of step , it acts :
 
-(note : if hit enter and leave it blank , it set default path)
-```
-/User/exmaple/desktop
-```
-then to specify split number ( not work yet !):
+    1- if step 1 leaved blank : save file in root of project
 
-(note : if hit enter and leave it blank , it set 8 part as a default)
-```
-8
-```
+    2- if step 2 leaved blank : split file in 8 parts
 
-### download :
+
+### how it works :
 
 1- install requirements :
 
@@ -32,17 +32,23 @@ then to specify split number ( not work yet !):
 $   pip install -r requirements.txt
 ```
 
-2- download file :
+2- to download file :
 
 ```
 $   python3 main.py <url>
 ```
 
-3- enjoy !
+3- enjoy :)
 
 
 ### contribute :
-i appricate any PR .
+i appricate any PR or feedbacks to improve Shivan .
+<p>&nbsp;</p>
+
+### note :
+you may have a question (why i create this ?) .
+
+answer : i'm very curious about how donwload managers work because of that i wrote Shivan .
 <p>&nbsp;</p>
 
 ## TODO:
