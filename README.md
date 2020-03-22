@@ -13,7 +13,7 @@ note : if you want to config Shivan please read otherwise please jump to step 2 
 you can configure Shivan in two terms :
 
     1 - where to save file after Shivan downloads the file
-
+    
     2 - how much Shivan must split file ( in range 1-8 parts)
 
 to configure please enter :
@@ -72,18 +72,18 @@ answer : i'm very curious about how donwload managers work because of that i wro
 
 ~~- url format validation~~
 
+~~- check url is downloadable~~
+
 <p>&nbsp;</p>
 
-  
+
 **Short-term :**
 
-- check url is downloadable
-
 - dynamic number of part
-
 - check if all parts downloaded then concate to final_file
-
 - read from clipboard
+- turn it to pypi package
+- create setup.py installation
 
 <p>&nbsp;</p>
 
