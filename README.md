@@ -1,3 +1,7 @@
+![Version 1.0](http://img.shields.io/badge/version-v1.4-green.svg)
+![Python 3.8](http://img.shields.io/badge/python-3.8-blue.svg)
+[![GNU 3](http://img.shields.io/badge/license-MIT%20License-blue.svg)](https://img.shields.io/github/license/coci/hivan)
+
 # shivan
 Shivan is a lightweight download manager that written in python 🐍 . 
 
