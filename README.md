@@ -40,12 +40,9 @@ $ python3 main.py <url>
 ### Contribution
 
 I appreciate any PR or feedbacks to improve Shivan.
-
-### Tip
-
 You may ask "why i made this"?
 
-answer: I'm very curious about how donwload managers work because of that i wrote Shivan :)
+Answer: I'm very curious about how donwload managers work because of that i wrote Shivan :)
 
 ### ToDo
 
