@@ -5,7 +5,7 @@ Shivan supports multi-part downloading method.
 
 ### Getting Started
 
-#### Configuring
+#### 1. Configuring
 
 you can configure Shivan in two terms :
 
@@ -23,15 +23,15 @@ Tip: Configuration steps will ask 2 questions and if you hit enter and leave it 
 1. if step 1 leaved blank : save file in root of project
 2. if step 2 leaved blank : split file in 8 parts
 
-#### Usage
+#### 2. Usage
 
-##### Install Requirements
+##### 2.1. Install Requirements
 
 ```bash
 $ pip install -r requirements.txt
 ```
 
-##### Run-up
+##### 2.2. Run-up
 
 ```bash
 $ python3 main.py <url>
@@ -39,7 +39,7 @@ $ python3 main.py <url>
 
 ### Contribution
 
-I appricate any PR or feedbacks to improve Shivan.
+I appreciate any PR or feedbacks to improve Shivan.
 
 ### Tip
 
