@@ -2,6 +2,7 @@ import os
 import shutil
 import sys
 from threading import Thread
+from multiprocessing import Process
 import json
 
 from exception import UrlDoesNotExists, InCorrectUrl
@@ -18,6 +19,19 @@ class Shivan(object):
 
 	def _validate_url(self):
 		check_url(self.url)
+	
+	def _download_in_parts(self):
+		"""
+		download file in many parts
+		"""
+		pass
+
+
+	def _download_one_parts(self):
+		"""
+		download file in one part only
+		"""
+		pass
 
 	def _split(self):
 		"""
@@ -37,9 +51,11 @@ class Shivan(object):
 		self._file_name = grab_file_name(self.url)  # grab file name from url
 
 		# load config file
-		config_file_path = str(os.getcwd()) + "/config.cfg"
+		config_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)) + "/config.json")
+
 		if os.path.exists(config_file_path):
 			self._config_file = json.load(open(config_file_path,'r'))
+			print(self._config_file)
 		else:
 			self._config_file = {
 				"part" : "",
@@ -52,7 +68,7 @@ class Shivan(object):
 		print(f"file name : {self._file_name}")
 		print(f"file size : {self._split()[1]//1024} KB")
 		print('number of parts : 8') # TODO: dynamic number of part
-		print(f"download in : {str(os.getcwd())}")
+		print(f"download in : {self._config_file['path_to_download']}")
 		print("")
 
 	def _download(self):
@@ -70,9 +86,8 @@ class Shivan(object):
 			end = splited_parts[i + 1]  # end of range (byte)
 
 			# download each part in seprate thread
-			download_in_thread = Thread(target=download_threading(start, end, self.url, i,self._file_name,part_files[self._file_name], path_to_temp))
+			download_in_thread = Process(target=download_threading(start, end, self.url, i,self._file_name,part_files[self._file_name], path_to_temp))
 			download_in_thread.start()
-
 
 		if self._config_file['path_to_download'] :
 			# store file in path that user provided
