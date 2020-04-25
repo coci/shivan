@@ -15,7 +15,7 @@ class Shivan(object):
 		self._validate_url()
 		self._prepare()  # preprocess before download
 		self._information()  # print out information about file
-		self._download() # download file
+		self._download()
 
 	def _validate_url(self):
 		check_url(self.url)
@@ -55,6 +55,7 @@ class Shivan(object):
 
 		if os.path.exists(config_file_path):
 			self._config_file = json.load(open(config_file_path,'r'))
+			print(self._config_file)
 		else:
 			self._config_file = {
 				"part" : "",
