@@ -55,7 +55,6 @@ class Shivan(object):
 
 		if os.path.exists(config_file_path):
 			self._config_file = json.load(open(config_file_path,'r'))
-			print(self._config_file)
 		else:
 			self._config_file = {
 				"part" : "",
