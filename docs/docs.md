@@ -22,7 +22,7 @@ after sometimes that I work in a back-end career, I figured out that I am intere
 
 after some thinking about those topics, I found the best way to learn about them is to write them. But not the same as a commercial version with tons of features that they have or what complexity on them, simply write them.
 
-So, I began my journey with writing a key-value database like Redis, but I left that in the middle, and some days ago, I started again with writing download manager, that because Shivan was here.
+So, I began my journey with writing a key-value database like Redis, but I left that in the middle, and some days ago, I started again with writing download manager, that because Shivan is here.
 
 ## how Shivan works ( in other words, how download managers work ) :
 
